@@ -1,0 +1,27 @@
+# Build artifacts
+build/
+*.o
+*.out
+*.exe
+backtest
+cmake-build-*/
+
+# IDE files
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*.swo
+
+# Data files
+data/*.csv
+*.csv
+
+# Compiled libraries
+*.a
+*.so
+*.dylib
+
+# Test outputs
+tests/output/
+*.log
