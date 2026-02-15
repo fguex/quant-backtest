@@ -18,6 +18,7 @@ namespace backtest {
     /**
      * @brief Loads historical market data from CSV file
      * @param file_path Path to CSV file with OHLCV data
+     * @param symbol Ticker symbol to assign to all bars
      * @return true if successful, false if file cannot be opened
      * 
      * CSV Format: timestamp,open,high,low,close,volume
@@ -26,7 +27,7 @@ namespace backtest {
      * - Timestamp should be a string (e.g., "2024-01-15")
      * - All prices and volume are parsed as doubles
      */
-    bool DataHandler::load_csv(const std::string& file_path) {
+    bool DataHandler::load_csv(const std::string& file_path, const std::string& symbol) {
         std::ifstream file(file_path);
         if (!file.is_open()) {
             std::cerr << "Error opening file: " << file_path << std::endl;
@@ -51,8 +52,8 @@ namespace backtest {
             ss >> close; ss.ignore();           // Read close, skip comma
             ss >> volume;                       // Read volume (last field)
 
-            // Create Bar and add to collection
-            bars_.emplace_back(timestamp, open, high, low, close, volume);
+            // Create Bar and add to collection (now includes symbol)
+            bars_.emplace_back(timestamp, symbol, open, high, low, close, volume);
         }
 
         file.close();

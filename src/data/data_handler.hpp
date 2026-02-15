@@ -35,12 +35,13 @@ namespace backtest {
             /**
              * @brief Loads historical market data from a CSV file
              * @param file_path Path to the CSV file containing OHLCV data
+             * @param symbol Ticker symbol to assign to all bars (default: "UNKNOWN")
              * @return true if file loaded successfully, false otherwise
              * 
              * Expected CSV format: timestamp,open,high,low,close,volume
              * First line (header) is skipped automatically.
              */
-            bool load_csv(const std::string& file_path);
+            bool load_csv(const std::string& file_path, const std::string& symbol = "UNKNOWN");
             
             /**
              * @brief Checks if more data bars are available

@@ -6,7 +6,7 @@ int main() {
     backtest::DataHandler data;
     backtest::SMAStrategy strategy(3, 5);  // 3-day short, 5-day long MA
     
-    if (!data.load_csv("../data/sample_data.csv")) {
+    if (!data.load_csv("../data/sample_data.csv", "SPY")) {
         std::cout << "Failed to load data" << std::endl;
         return 1;
     }

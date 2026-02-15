@@ -21,6 +21,7 @@ namespace backtest {
  */
 struct Bar {
     std::string timestamp;  ///< ISO 8601 format timestamp (e.g., "2024-01-15T09:30:00")
+    std::string symbol;     ///< Ticker symbol for the asset
     double open;            ///< Opening price for the period
     double high;            ///< Highest price during the period
     double low;             ///< Lowest price during the period
@@ -28,24 +29,23 @@ struct Bar {
     double volume;          ///< Trading volume during the period
 
     /**
-     * @brief Constructs a Bar with all OHLCV data
+     * @brief Constructs a Bar with all OHLCV data and symbol
      * @param ts Timestamp string
+     * @param sym Ticker symbol
      * @param o Opening price
      * @param h High price
      * @param l Low price
      * @param c Closing price
      * @param v Trading volume
      */
-    Bar(const std::string& ts, double o, double h, double l, double c, double v)
-        : timestamp(ts), open(o), high(h), low(l), close(c), volume(v) {}
+    Bar(const std::string& ts, const std::string& sym, double o, double h, double l, double c, double v)
+        : timestamp(ts), symbol(sym), open(o), high(h), low(l), close(c), volume(v) {}
 
     /**
      * @brief Default constructor - initializes with zero/empty values
      */
-    Bar() : timestamp(""), open(0), high(0), low(0), close(0), volume(0) {}
-
+    Bar() : timestamp(""), symbol(""), open(0), high(0), low(0), close(0), volume(0) {}
 };
 
 } // namespace backtest
 #endif // MARKET_DATA_HPP
-
